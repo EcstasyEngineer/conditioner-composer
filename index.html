@@ -29,7 +29,7 @@
     <li><code>main[90s]</code> and <code>main[1m30s]</code> repeat until that time, then finish the line or the block pass.</li>
     <li><code>main[@shift]</code> and <code>main[@shift:3]</code> repeat until that lead marker. <code>main[@end]</code> fills until the lead ends.</li>
     <li><code>wait[5s]</code>, <code>wait[1m]</code>, <code>wait[1m30s]</code>, and <code>wait[@shift]</code> are silence.</li>
-    <li>A line <code>@shift</code> in a lead block is a zero-duration marker. <code>{"sfx":"bell"}</code> names a sound id. The server has to approve that id. This page does not include the bell file, and a path or URL is not an id.</li>
+    <li>A line <code>@shift</code> in a lead block is a zero-duration marker. <code>{"sfx":"bell"}</code> names a sound id. The bot includes the Speedwasher catalog shown in the sound picker. Additional IDs need server approval; paths and URLs are not IDs.</li>
     <li>One track per chapter is the timing lead. Loop repeats the whole follower sequence. Finish says whether a boundary completes the current line or the current block pass.</li>
   </ul>
 </section>
@@ -40,6 +40,8 @@
   <div id="preset-list"></div>
   <button id="add-preset" type="button">Add audio preset</button>
 </section>
+
+<datalist id="sfx-options"><option value="bell"></option><option value="clicker"></option><option value="gong"></option><option value="pop"></option><option value="snap"></option><option value="whimper"></option></datalist>
 
 <section id="blocks">
   <h2>Blocks</h2>

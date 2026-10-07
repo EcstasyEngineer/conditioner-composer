@@ -370,7 +370,7 @@ function renderEntry(blockName, index, value) {
     input.addEventListener('input', () => { lines[index] = input.value; syncJson(); });
     row.append(field('Marker', input));
   } else if (kind === 'sfx') {
-    const input = el('input', { type: 'text', value: value.sfx, 'aria-label': `Sound effect id ${index + 1} of ${blockName}`, pattern: '[A-Za-z0-9_-]{1,80}' });
+    const input = el('input', { type: 'text', value: value.sfx, list: 'sfx-options', 'aria-label': `Sound effect id ${index + 1} of ${blockName}`, pattern: '[A-Za-z0-9_-]{1,80}' });
     input.addEventListener('input', () => { value.sfx = input.value; syncJson(); });
     row.append(field('Sound effect id', input));
   } else {
