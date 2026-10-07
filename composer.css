@@ -1,0 +1,53 @@
+* { box-sizing: border-box; }
+html { overflow-x: hidden; }
+body {
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 20px 16px 48px;
+  background: #101828;
+  color: #e8edf5;
+  font: 16px/1.45 system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+h1 { font-size: 1.8rem; line-height: 1.2; margin-bottom: 0.3rem; }
+h2 { font-size: 1.25rem; margin: 0 0 0.4rem; }
+p { margin: 0.4rem 0; }
+button, input, select, textarea {
+  max-width: 100%;
+  font: inherit;
+  color: inherit;
+  background: #1e2c44;
+  border: 1px solid #8ea0bb;
+  border-radius: 6px;
+  padding: 8px;
+}
+button {
+  background: #2456a5;
+  min-height: 44px;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.55; cursor: default; }
+textarea { width: 100%; resize: vertical; }
+#plan-json { min-height: 320px; font: 14px/1.4 ui-monospace, monospace; }
+label { display: grid; gap: 4px; margin: 8px 0; }
+.actions, .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; }
+section, fieldset {
+  min-width: 0;
+  border: 1px solid #465574;
+  border-radius: 12px;
+  margin: 14px 0;
+  padding: 12px;
+}
+fieldset { background: #152033; }
+.help, small { color: #c5d4e8; }
+#status, #validator-state { white-space: pre-wrap; }
+#status.error, #validator-state.error { color: #ffd499; }
+#status.ok, #validator-state.ok { color: #b6f5c8; }
+.card { border-top: 1px solid #546480; margin-top: 10px; padding-top: 8px; }
+:focus-visible { outline: 2px solid #a6ceff; outline-offset: 2px; }
+a { color: #a6ceff; }
+code { color: #d6e6ff; }
+@media (max-width: 800px) {
+  body { padding: 12px 10px 32px; }
+  h1 { font-size: 1.45rem; }
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audio plan composer</title>
+  <link rel="stylesheet" href="composer.css">
+</head>
+<body>
+<header>
+  <h1>Audio plan composer</h1>
+  <p>Edit a version 2 plan, check it, then download the JSON and attach it to <code>!generate</code>.</p>
+  <p id="validator-state">Loading the validator…</p>
+</header>
+
+<div class="actions">
+  <button id="load-example" type="button">Load example</button>
+  <label>Import JSON <input id="import-plan" type="file" accept="application/json,.json"></label>
+  <label>Saved block library <input id="import-library" type="file" accept="application/json,.json"></label>
+  <button id="download" type="button">Download JSON</button>
+  <button id="validate" type="button">Validate</button>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+
+<section>
+  <h2>How instructions work</h2>
+  <ul>
+    <li><code>main</code> plays a block once. <code>main[5x]</code> plays five passes.</li>
+    <li><code>main[90s]</code> and <code>main[1m30s]</code> repeat until that time, then finish the line or the block pass.</li>
+    <li><code>main[@shift]</code> and <code>main[@shift:3]</code> repeat until that lead marker. <code>main[@end]</code> fills until the lead ends.</li>
+    <li><code>wait[5s]</code>, <code>wait[1m]</code>, <code>wait[1m30s]</code>, and <code>wait[@shift]</code> are silence.</li>
+    <li>A line <code>@shift</code> in a lead block is a zero-duration marker. <code>{"sfx":"bell"}</code> names a sound id. The server has to approve that id. This page does not include the bell file, and a path or URL is not an id.</li>
+    <li>One track per chapter is the timing lead. Loop repeats the whole follower sequence. Finish says whether a boundary completes the current line or the current block pass.</li>
+  </ul>
+</section>
+
+<section id="presets">
+  <h2>Audio presets</h2>
+  <p class="help">Root <code>audio</code> is a dictionary of named settings. A track’s <code>audio</code> names one of them, or holds settings inline. Settings are flat: voice, pan, volume_db, reverb, pitch_semitones, speed, resample.</p>
+  <div id="preset-list"></div>
+  <button id="add-preset" type="button">Add audio preset</button>
+</section>
+
+<section id="blocks">
+  <h2>Blocks</h2>
+  <p class="help">Blocks are reused by name, the same way presets are. Every spoken line, marker, and sound used in the download is stored in this file.</p>
+  <div id="block-list"></div>
+  <button id="add-block" type="button">Add block</button>
+</section>
+
+<section id="arrangement">
+  <h2>Chapters and tracks</h2>
+  <p class="help">A root <code>tracks</code> array is one chapter. <code>chapters</code> holds several. A plan uses one of those shapes.</p>
+  <div id="chapter-list"></div>
+  <button id="add-chapter" type="button">Add chapter</button>
+</section>
+
+<section id="background">
+  <h2>Background</h2>
+  <div id="binaural-fields"></div>
+</section>
+
+<section>
+  <h2>Plan JSON</h2>
+  <p class="help">Update the form from this JSON before relying on the fields above. The download is this plan.</p>
+  <textarea id="plan-json" aria-label="Plan JSON" spellcheck="false"></textarea>
+  <p><button id="apply-json" type="button">Update form from JSON</button></p>
+</section>
+<script src="composer.js"></script>
+</body>
+</html>

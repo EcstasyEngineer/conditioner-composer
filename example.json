@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "binaural": "none",
+  "audio": {
+    "center": {
+      "voice": "kokoro/af_sarah",
+      "volume_db": -3,
+      "reverb": "low",
+      "pitch_semitones": -2,
+      "speed": 1
+    },
+    "side": {
+      "pan": {
+        "from": -1,
+        "to": 1,
+        "period_s": 12
+      }
+    }
+  },
+  "blocks": {
+    "main": [
+      "First line.",
+      "@shift",
+      "Next line."
+    ],
+    "bell": [
+      {
+        "sfx": "bell"
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "audio": "center",
+      "lead": true,
+      "blocks": [
+        "main[5x]",
+        "wait[10s]"
+      ]
+    },
+    {
+      "audio": "side",
+      "blocks": [
+        "wait[@shift]",
+        "bell"
+      ]
+    }
+  ]
+}
